@@ -1,36 +1,41 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Deploy on DOM Cloud
 
-First, run the development server:
+### Set up host
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Create a DOMCloud instance with the following recipe:
+```yaml
+source: clear
+features:
+  - bun latest
+nginx:
+  root: public_html/public
+  passenger:
+    enabled: "on"
+    app_start_command: env PORT=$PORT proxfix bun app.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+SSH into the DOMCloud host; do `ssh-keygen` there to generate a public/private key pair; skip the 'Enter file in which to save the key' and 'Enter passphrase for' part.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The extensionless file inside .ssh is your private key (should look like the following example); copy the text and delete the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Rename the .pub file (your public key) into authorized_keys (leave no extension).
 
-## Learn More
+### Secrets
 
-To learn more about Next.js, take a look at the following resources:
+Add the necessary repository secrets to:
+- https://github.com/username/repository/settings/secrets/actions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Add the private key from before (under the name `SSH_KEY`)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Add the DOMCloud host (under the label `SSH_HOST`), for example osk.domcloud.co
 
-## Deploy on Vercel
+Add the DOMCloud site-specific username (under the label `SSH_USER`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Edit anything in the project and commit to GitHub; the build workflow should now be performed automatically!
+
+Visit the Actions page of your repository
+https://github.com/username/repository/actions

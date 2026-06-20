@@ -1,0 +1,29 @@
+name: Build to DOM Cloud
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+    - name: Install Bun
+      run: bun install
+    - name: Build release binary
+      run: bun run build
+    - name: Deploy build
+      uses: appleboy/scp-action@v1
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        port: 22
+        source: ".next/*"
+        target: "public_html"
