@@ -13,7 +13,7 @@ nginx:
   root: public_html
   passenger:
     enabled: "on"
-    app_start_command: env PORT=$PORT bun .next/standalone/server.js
+    app_start_command: env PORT=$PORT /home/testy-boyfriend-bev/.bun/bin/bun .next/standalone/server.js
   locations:
     - match: /_next/static/
       alias: public_html/.next/static/
