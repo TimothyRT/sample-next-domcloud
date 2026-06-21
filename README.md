@@ -8,16 +8,16 @@ Create a DOMCloud instance with the following recipe:
 ```yaml
 source: clear
 features:
-  - bun latest
+  - node latest
 nginx:
-  root: public_html
+  root: public_html/public
   passenger:
     enabled: "on"
-    app_start_command: env PORT=$PORT node public_html/.next/standalone/server.js
-  locations:
-    - match: /_next/static/
-      alias: public_html/.next/static/
+    app_type: node
+    startup_file: .next/standalone/server.js
 ```
+
+### SSH key
 
 SSH into the DOMCloud host; do `ssh-keygen` there to generate a public/private key pair; skip the 'Enter file in which to save the key' and 'Enter passphrase for' part.
 
