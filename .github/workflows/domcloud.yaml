@@ -37,7 +37,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        source: ".next/standalone/."
+        source: "."
         target: "public_html"
     # - name: Deploy .next/static
     #   uses: appleboy/scp-action@v1
