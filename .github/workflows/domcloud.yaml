@@ -37,23 +37,23 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        source: ".next/standalone/"
+        source: ".next/standalone/*"
         target: "public_html"
-    - name: Deploy .next/static
-      uses: appleboy/scp-action@v1
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_KEY }}
-        port: 22
-        source: ".next/static"
-        target: "public_html/.next"
-    - name: Deploy public assets
-      uses: appleboy/scp-action@v1
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_KEY }}
-        port: 22
-        source: "public"
-        target: "public_html"
+    # - name: Deploy .next/static
+    #   uses: appleboy/scp-action@v1
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }}
+    #     username: ${{ secrets.SSH_USER }}
+    #     key: ${{ secrets.SSH_KEY }}
+    #     port: 22
+    #     source: ".next/static"
+    #     target: "public_html/.next"
+    # - name: Deploy public assets
+    #   uses: appleboy/scp-action@v1
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }}
+    #     username: ${{ secrets.SSH_USER }}
+    #     key: ${{ secrets.SSH_KEY }}
+    #     port: 22
+    #     source: "public"
+    #     target: "public_html"
