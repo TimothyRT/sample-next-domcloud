@@ -46,7 +46,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        source: "public"
+        source: "public/*"
         target: "public_html/public"
     - name: Copy static assets (II)
       uses: appleboy/scp-action@v1
@@ -55,5 +55,5 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        source: ".next/static"
+        source: ".next/static/*"
         target: "public_html/.next/static"
