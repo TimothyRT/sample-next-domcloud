@@ -30,30 +30,30 @@ jobs:
           echo $HOME
           mkdir -p public_html/test
           echo OK
-    - name: Deploy build
+    - name: Deploy standalone files
       uses: appleboy/scp-action@v1
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        source: ".next/standalone/*"
+        source: ".next/standalone/"
         target: "public_html"
-    - name: Copy static assets (I)
+    - name: Deploy .next/static
       uses: appleboy/scp-action@v1
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        source: "public/*"
-        target: "public_html/public"
-    - name: Copy static assets (II)
+        source: ".next/static"
+        target: "public_html/.next"
+    - name: Deploy public assets
       uses: appleboy/scp-action@v1
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        source: ".next/static/*"
-        target: "public_html/.next/static"
+        source: "public"
+        target: "public_html"
