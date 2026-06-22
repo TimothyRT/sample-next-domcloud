@@ -47,7 +47,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: 22
         source: ".next/static"
-        target: "public_html/.next"
+        target: "public_html"
     - name: Deploy public assets
       uses: appleboy/scp-action@v1
       with:
