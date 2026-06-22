@@ -14,7 +14,7 @@ nginx:
   passenger:
     enabled: "on"
     app_type: node
-    startup_file: .next/standalone/server.js
+    startup_file: server.js
 ```
 
 ### SSH key

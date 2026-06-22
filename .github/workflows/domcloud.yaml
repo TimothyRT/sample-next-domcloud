@@ -57,3 +57,18 @@ jobs:
         port: 22
         source: "public"
         target: "public_html"
+    - name: Reorder files as needed
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd ~/public_html
+          mv .next/standalone/node_modules node_modules/
+          mv .next/standalone/package.json package.json
+          mv .next/standalone/server.js server.js
+          shopt -s dotglob
+          mv .next/standalone/.next/* .next/
+          rm -r .next/standalone/
+          
