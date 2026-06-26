@@ -30,6 +30,16 @@ jobs:
           echo $HOME
           mkdir -p public_html/test
           echo OK
+    - name: Clear previous files
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd ~
+          rm -r public_html
+          mkdir public_html
     - name: Deploy standalone files
       uses: appleboy/scp-action@v1
       with:
