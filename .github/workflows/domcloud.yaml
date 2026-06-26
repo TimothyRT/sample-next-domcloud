@@ -67,7 +67,7 @@ jobs:
         port: 22
         source: "public"
         target: "public_html"
-    - name: Reorder files as needed
+    - name: Reorder files and restart
       uses: appleboy/ssh-action@v1
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -81,4 +81,5 @@ jobs:
           shopt -s dotglob
           mv .next/standalone/.next/* .next/
           rm -r .next/standalone/
+          restart || true
           
