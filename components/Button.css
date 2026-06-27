@@ -1,0 +1,48 @@
+.button {
+    background: var(--button-background);
+    border: 2px solid var(--button-border-color);
+    border-radius: 12px;
+    color: var(--button-font-color);
+    cursor: pointer;
+    font-size: var(--font-size-text-button);
+    font-weight: var(--font-weight-text-button);
+    min-width: 100px;
+    padding: 6px 12px;
+    white-space: nowrap;
+
+    &:hover {
+        background: var(--button-background-hovered);
+        border-color: var(--button-border-color-hovered);
+        color: var(--button-font-color-hovered);
+    }
+}
+
+.button--solid {
+    --button-background: var(--primary-500);
+    --button-border-color: var(--primary-500);
+    --button-font-color: var(--white);
+
+    --button-background-hovered: var(--primary-400);
+    --button-border-color-hovered: var(--primary-400);
+    --button-font-color-hovered: var(--white);
+}
+
+.button--outline {
+    --button-background: none;
+    --button-border-color: var(--primary-500);
+    --button-font-color: var(--primary-500);
+
+    --button-background-hovered: none;
+    --button-border-color-hovered: var(--primary-400);
+    --button-font-color-hovered: var(--primary-400);
+}
+
+.button--text {
+    --button-background: none;
+    --button-border-color: none;
+    --button-font-color: var(--neutral-900);
+
+    --button-background-hovered: var(--neutral-100);
+    --button-border-color-hovered: var(--neutral-100);
+    --button-font-color-hovered: var(--neutral-900);
+}

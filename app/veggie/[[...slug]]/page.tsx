@@ -1,8 +1,6 @@
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+const Page = async ({params, }: {params: Promise<{slug: string}>}) => {
   const { slug } = await params
-  return <div> {slug} </div>
+  return <div>{slug}</div>
 }
+
+export default Page
